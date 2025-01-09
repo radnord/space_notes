@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Notes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="space" id="space">
+        <div class="space-content" id="spaceContent"></div>
+    </div>
+    <button class="add-note" onclick="showCreationModal()">+</button>
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal')">×</button>
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <div id="modalContent" class="modal-text"></div>
+        </div>
+    </div>
+
+    <div class="creation-modal" id="creationModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('creationModal')">×</button>
+            <h2 class="modal-title">Новая заметка</h2>
+            <div class="modal-field">
+                <label>Название</label>
+                <input type="text" id="noteTitle" placeholder="Введите название">
+            </div>
+            <div class="modal-field">
+                <label>Содержание</label>
+                <textarea id="noteContent" placeholder="Введите содержание"></textarea>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn" onclick="closeModal('creationModal')">Отмена</button>
+                <button class="modal-btn primary" onclick="createNote()">Создать</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-buttons">
+        <button class="control-button" onclick="exportNotes()">
+            <span>Экспорт</span>
+        </button>
+        <label class="control-button">
+            <input type="file" class="import-input" id="importInput" accept=".json" onchange="importNotes(event)">
+            <span>Импорт</span>
+        </label>
+    </div>
+
+    <div id="messageModal" class="message-modal">
+        <div id="messageText"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="export-import.js"></script>
+</body>
+</html>
