@@ -10,18 +10,23 @@
     <div class="space" id="space">
         <div class="space-content" id="spaceContent"></div>
     </div>
-    <button class="add-note" onclick="showCreationModal()">+</button>
+    <div class="floating-controls">
+        <button class="style-switcher" onclick="switchStyle()" title="Переключить стиль">
+            <span class="style-indicator"></span>
+        </button>
+    </div>
     <div class="overlay" id="overlay"></div>
     
-    <div class="modal" id="modal">
+    <div class="modal view-modal" id="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal')">×</button>
             <h2 id="modalTitle" class="modal-title"></h2>
             <div id="modalContent" class="modal-text"></div>
+            <div id="modalTag" class="modal-tag"></div>
         </div>
     </div>
 
-    <div class="creation-modal" id="creationModal">
+    <div class="modal creation-modal" id="creationModal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('creationModal')">×</button>
             <h2 class="modal-title">Новая заметка</h2>
@@ -33,6 +38,10 @@
                 <label>Содержание</label>
                 <textarea id="noteContent" placeholder="Введите содержание"></textarea>
             </div>
+            <div class="modal-field">
+                <label>Тег</label>
+                <input type="text" id="noteTag" placeholder="Введите тег">
+            </div>
             <div class="modal-buttons">
                 <button class="modal-btn" onclick="closeModal('creationModal')">Отмена</button>
                 <button class="modal-btn primary" onclick="createNote()">Создать</button>
@@ -40,21 +49,48 @@
         </div>
     </div>
 
-    <div class="control-buttons">
-        <button class="control-button" onclick="exportNotes()">
-            <span>Экспорт</span>
-        </button>
-        <label class="control-button">
-            <input type="file" class="import-input" id="importInput" accept=".json" onchange="importNotes(event)">
-            <span>Импорт</span>
-        </label>
+    <div class="modal creation-modal" id="editModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('editModal')">×</button>
+            <h2 class="modal-title">Редактировать заметку</h2>
+            <div class="modal-field">
+                <label>Название</label>
+                <input type="text" id="editNoteTitle" placeholder="Введите название">
+            </div>
+            <div class="modal-field">
+                <label>Содержание</label>
+                <textarea id="editNoteContent" placeholder="Введите содержание"></textarea>
+            </div>
+            <div class="modal-field">
+                <label>Тег</label>
+                <input type="text" id="editNoteTag" placeholder="Введите тег">
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn" onclick="closeModal('editModal')">Отмена</button>
+                <button class="modal-btn primary" onclick="saveEditedNote()">Сохранить</button>
+            </div>
+        </div>
     </div>
+
+    <div class="control-buttons">
+    <button class="control-button" onclick="exportNotes()">
+        <span>Экспорт</span>
+    </button>
+    <label class="control-button">
+        <input type="file" class="import-input" id="importInput" accept=".json" onchange="importNotes(event)">
+        <span>Импорт</span>
+    </label>
+    <button class="control-button delete-all" onclick="confirmDeleteAll()">
+        <span>Удалить все</span>
+    </button>
+</div>
 
     <div id="messageModal" class="message-modal">
         <div id="messageText"></div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="export-import.js"></script>
+<script src="script.js"></script>
+<script src="export-import.js"></script>
+<script src="delete-all.js"></script>
 </body>
 </html>

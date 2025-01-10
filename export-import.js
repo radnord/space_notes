@@ -11,7 +11,7 @@ function showMessage(message, isError = false) {
 }
 
 function exportNotes() {
-    const notesData = localStorage.getItem('notes');
+    const notesData = localStorage.getItem('notesData');
     if (!notesData) {
         showMessage('Нет заметок для экспорта', true);
         return;
@@ -22,7 +22,7 @@ function exportNotes() {
         const exportData = {
             version: "1.0",
             timestamp: new Date().toISOString(),
-            notes: JSON.parse(notesData)
+            data: JSON.parse(notesData)
         };
 
         // Создаем и скачиваем файл
@@ -56,13 +56,16 @@ function importNotes(event) {
             const importData = JSON.parse(e.target.result);
             
             // Проверка структуры данных
-            if (!importData.notes || !Array.isArray(importData.notes)) {
+            if (!importData.data || !importData.data.notes || !Array.isArray(importData.data.notes)) {
                 throw new Error('Неверный формат файла');
             }
 
-            // Очищаем текущие заметки
-            notes = importData.notes;
-            localStorage.setItem('notes', JSON.stringify(notes));
+            // Импортируем данные
+            const data = importData.data;
+            notes = data.notes;
+            tagColors = new Map(data.tagColors);
+            colorIndex = data.colorIndex;
+            localStorage.setItem('notesData', JSON.stringify(data));
             
             // Очищаем пространство
             const spaceContent = document.getElementById('spaceContent');
