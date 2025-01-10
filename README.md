@@ -1,4 +1,4 @@
 # space_notes
 Космические заметки
 
-![image](https://github.com/user-attachments/assets/921d4f8a-9547-4217-b4fd-d4a78273afb2)
+![image](https://github.com/user-attachments/assets/da28abcb-2a73-415c-985f-fc88daf38aed)
