@@ -302,7 +302,7 @@ function createNote() {
     const content = document.getElementById('noteContent').value;
     const tag = document.getElementById('noteTag').value.trim();
     
-    if (!title || !content) return;
+    if (!title) return; // Проверяем только title
 
     const parentNote = parentId ? notes.find(n => n.id === parentId) : null;
     
@@ -318,7 +318,6 @@ function createNote() {
         note.x = parentNote.x;
         note.y = parentNote.y;
     } else {
-        // Используем сохраненные координаты клика
         const savedX = sessionStorage.getItem('newNoteX');
         const savedY = sessionStorage.getItem('newNoteY');
         if (savedX && savedY) {
@@ -426,7 +425,7 @@ function saveEditedNote() {
     const content = document.getElementById('editNoteContent').value;
     const tag = document.getElementById('editNoteTag').value.trim();
     
-    if (!title || !content) return;
+    if (!title) return; // Проверяем только title
 
     const noteIndex = notes.findIndex(n => n.id === currentEditingNoteId);
     if (noteIndex === -1) return;
@@ -440,7 +439,7 @@ function saveEditedNote() {
         noteEl.dataset.title = title;
         const color = getNoteColor(notes[noteIndex]);
         noteEl.style.backgroundColor = color;
-noteEl.style.boxShadow = `0 0 20px ${color}40`;
+        noteEl.style.boxShadow = `0 0 20px ${color}40`;
     }
 
     if (currentStyle === 3) {
