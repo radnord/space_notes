@@ -1,0 +1,68 @@
+.search-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    background: #1a1a23;
+    border: 1px solid #4a4a5a;
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.search-input {
+    background: transparent;
+    border: none;
+    color: #e0e0e0;
+    font-size: 14px;
+    width: 200px;
+    padding: 4px 8px;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #808080;
+}
+
+.search-icon {
+    opacity: 0.7;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+/* Стили для подсветки найденных заметок */
+.note-highlighted {
+    animation: pulse 2s infinite;
+    z-index: 10;
+}
+
+.note-dimmed {
+    opacity: 0.3;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+/* Добавляем стили для мобильных устройств */
+@media (max-width: 768px) {
+    .search-container {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+    }
+    
+    .search-input {
+        width: 100%;
+    }
+}
